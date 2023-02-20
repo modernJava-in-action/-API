@@ -147,3 +147,20 @@ Method
         .parseCaseInsensitive()
         .toFormatter(Locale.ITALIAN);
 ```
+
+
+#### 시간대 사용하기
+  표준 시간이 같은 지역을 묶어서 시간대 규칙 집합을 정의한다. ZoneRules 클래스에는 약 40개 정도의 시간대가 있다. 다음처럼 지역 ID로 특정 ZoneId를 구분한다.
+```java
+  ZoneId romeZone = ZoneId.of("Europe/Rome");
+```
+ZoneId를 이용해서 LocalDateTime을 Instant로 바꾸는 방법도 있다.
+```java
+  Instant instant = Instant.now();
+  LocalDateTime timeFromInstant = LocalDateTime.ofInstant(instant, romeZone);
+```
+
+### 정리
+  - 새로운 날짜와 시간 API에서 날짜와 시간 객체는 모두 불변이다.
+  - 날짜와 시간 객체를 절대적인 방법과 상대적인 방법으로 처리할 수 있으며 기존 인스턴스를 변환하지 않도록 처리 결과로 새로운 인스턴스가 생성된다.
+  - TemporalAdjuster를 이용하면 단순히 값을 바꾸는 것 이상의 복잡한 동작을 수행할 수 있다.
